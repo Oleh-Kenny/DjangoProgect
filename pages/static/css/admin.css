@@ -1,0 +1,33 @@
+#header {
+    background-color: rgba(47, 46, 46, 0.431);
+    color: #fff;
+  }
+  #branding h1 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: monospace;
+    
+  }
+  a:link,
+  a:visited {
+    color: #8f3a3a;
+  }
+  div.breadcrumbs {
+    background-color: gray;
+  }
+  div.breadcrumbs a {
+    color: #fff;
+  }
+  .module h2,
+  .module caption,
+  .inline-group h2 {
+    background-color: rgba(101, 135, 235, 0.746);
+  }
+  .button .button[type="submit"],
+  input[type="button"],
+  .submit-row input,
+  a.button {
+    background-color: gray;
+    color: #fff;
+  }

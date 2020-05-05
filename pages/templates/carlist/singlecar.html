@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'partials/_header_register.html' %}
+{% load static %}
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+        {% include 'partials/_alerts.html' %}
+            <div class="col-md-12 blog-contetn d-flex">
+            <div class="col-2 text-center">
+             
+                <span class="text-danger font-weight-bold">Car Manager</span>
+                </br>
+                <span class="spec">{{ car.carmanager }}</span>
+                <img src="{{ car.carmanager.photo.url }}" alt="Image" class="img-fluid rounded-circle border border-warning">
+                </br>
+                <p>{{ car.carmanager.description }}</p>
+     
+            </div>
+                <div class="col-5">
+                    <div class="item-1">
+                        <a href="#"><img src="{{ car.photo_main.url }}" alt="{{ car.model }}"
+                                class="carlist w-100 h-100 d-block"></a>
+                        <div class="item-1-contents">
+                            <div class="text-center">
+                                <h3><a href="#">{{ car.vendor }} {{car.model}}</a></h3>
+                               <div class="rating">
+                                {% if car.rating == 1 %}
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                     {% elif car.rating == 2 %}
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                     {% elif car.rating == 3 %}
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                     {% elif car.rating == 4 %}
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                     {% elif car.rating == 5 %}
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                    <span class="icon-star text-warning"><i class="fas fa-star"></i></span>
+                                    {% endif %}
+                                </div>
+                                <div class="rent-price"><span>{{car.price}}/</span>day</div>
+                                <ul class="specs">
+                                    <li>
+                                        <span>Doors</span>
+                                        <span class="spec">{{car.doors}}</span>
+                                    </li>
+                                    <li>
+                                        <span>Seats</span>
+                                        <span class="spec">{{car.seatss}}</span>
+                                    </li>
+                                    <li>
+                                        <span>Color</span>
+                                        <span class="spec">{{car.color}}</span>
+                                    </li>
+                                    <li>
+                                        <span>Transmission</span>
+                                        <span class="spec">{{car.transmission}}</span>
+                                    </li>
+                                    <li>
+                                        <span>Minium age</span>
+                                        <span class="spec">{{car.minimum_age}} years</span>
+                                    </li>
+                                    <li>
+                                        <span>Car Manager</span>
+                                        <span class="spec">{{car.carmanager}}</span>
+                                    </li>
+                                        </ul>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <form action="{% url 'contact' %}" method="POST" >
+                    {% csrf_token %}
+                    {% if user.is_authenticated %}
+                        <input type="hidden" name="user_id" value="{{ user.id }}" />
+                    {% else %}
+                        <input type="hidden" name="user_id" value="0" />
+                    {% endif %}
+                        <input type="hidden" name="car_id" value="{{car.id}}" />
+                        <input type="hidden" name="car_name" value="{{car.model}}" />
+                        <input type="hidden" name="car_manager" value="{{car.manager}}" />
+                        <input type="hidden" name="manager_email" value="{{car.carmanager.emaile}}" />
+
+                                        <div class="form-group">
+                                            <label >Name</label>
+                                            <input type="text" name="name" class="form-control" {% if user.is_authenticated %}
+                                                value="{{user.first_name}}" {% endif %} required placeholder="name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label >Email address</label>
+                                            <input type="email" name="email" class="form-control" {% if user.is_authenticated %}
+                                                value="{{user.email}}" {% endif %} required placeholder="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label >Phone</label>
+                                            <input type="text" name="phone" class="form-control"  placeholder="phone namber">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Example text area</label>
+                                            <textarea class="form-control" name="text" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Rent Car</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
