@@ -84,6 +84,9 @@ def search(request):
         "transmission_list" : transmission_list,
         "cars" : query,
         "request_value": request.GET
-    }
-    
+    } 
     return render(request, 'pages/search.html', context)
+
+def blog(request):
+    context = {"title": "blog"}
+    return render(request, 'pages/blog.html', context)

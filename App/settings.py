@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'cars',
     'carmanager',
     'account',
-    'contacts'
+    'contacts',
+    'blog'
+    
   
 
 ]
