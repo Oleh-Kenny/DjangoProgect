@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 from cars.models import CarsList
 from carmanager.models import CarManager
+from blog.models import BlogList
 from .cars_info import vendor_list, models_list, engine_list, transmission_list
 
 
@@ -10,6 +11,7 @@ from .cars_info import vendor_list, models_list, engine_list, transmission_list
 def index(request):
     cars = CarsList.objects.all().filter(is_published=True)[:6]
     random_car = CarsList.objects.order_by('?')[0]
+    bloglist = BlogList.objects.all()
     context = {
         "vendor_list" : vendor_list,
         "models_list" : models_list,
@@ -17,7 +19,8 @@ def index(request):
         "transmission_list" : transmission_list,
         'cars' : cars,
         "request_value": request.GET,
-        "rnd_car": random_car
+        "rnd_car": random_car,
+        "bloglist" : bloglist
         
     }
     return render(request, 'pages/index.html', context)
@@ -90,3 +93,8 @@ def search(request):
 def blog(request):
     context = {"title": "blog"}
     return render(request, 'pages/blog.html', context)
+
+
+def single_blog(request):
+    context = {"title": "blog"}
+    return render(request, 'blog/single_blog.html', context)

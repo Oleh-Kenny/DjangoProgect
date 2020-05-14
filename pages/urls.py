@@ -9,7 +9,8 @@ urlpatterns = [
     path('contacts', views.contact, name="contacts"),
     path('search', views.search, name ="search"),
     path('singlecar', views.search, name ="singlecar"),
-    path('blog', views.blog, name="blog")
+    path('blog', views.blog, name="blog"),
+    path('single_blog', views.single_blog, name="single_blog")
    
     
 
